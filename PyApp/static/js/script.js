@@ -100,7 +100,6 @@ function sendPic()
         }
     }).done((res) => {
         $("#result").html("The prediction is " + res);
-        console.log("Image sended");
     })
 }
 

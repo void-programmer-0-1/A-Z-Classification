@@ -1,1 +1,1 @@
-*** This is a pytorch to onnx conversion ***
+This is a pytorch to onnx conversion 
