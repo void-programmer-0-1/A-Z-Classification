@@ -1,0 +1,17 @@
+
+* {
+    overflow: hidden;
+    padding: 0%;
+    margin: 0%;
+}
+
+body {
+    text-align: center;
+}
+
+#canvas{
+    margin-top: 20px;
+    border-style: dashed;
+    width: 280;
+    height: 280;
+}

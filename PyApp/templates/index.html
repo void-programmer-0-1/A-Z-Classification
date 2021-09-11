@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamil Language</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.9.0/dist/tf.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <script src="{{ url_for('static',filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <title>
+        Tamil
+    </title>
+
+    <div class="Drawing Button">
+        <canvas id="canvas"></canvas>
+        <button id="drawing-btn" onclick="sendPic()">Send</button>  
+    </div>
+    <br></br>
+    <p id="result">Please Draw</p>
+
+</body>
+</html>
