@@ -12,6 +12,7 @@ body {
 #canvas{
     margin-top: 20px;
     border-style: dashed;
+    border-color: black;
     width: 280;
     height: 280;
 }
