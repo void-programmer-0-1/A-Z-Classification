@@ -51,11 +51,12 @@ def ai():
         image_PIL.save("image.png")
         
         image_np = np.array(image_PIL,dtype=np.float32)
+        print(image_np[None,...].shape)
         
-        session = onnxruntime.InferenceSession("onnx_model.onnx")
+        session = onnxruntime.InferenceSession("english_onnx.onnx")
         input_name = session.get_inputs()[0].name
         output_name = session.get_outputs()[0].name
-        result = np.array(session.run(None, {input_name: image_np}))
+        result = np.array(session.run(None, {input_name: image_np[None,...]}))
         
         alpha_index  = result.argmax()
         alpha = alphabets[alpha_index + 1]
