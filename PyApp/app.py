@@ -38,7 +38,7 @@ alphabets = {
 }
 
 
-@app.route("/draw",methods=["POST","GET"])
+@app.route("/",methods=["POST","GET"])
 def ai():
 
     if request.method == "POST": # how to get image from canvas to flask --> https://stackoverflow.com/questions/31077366/pil-cannot-identify-image-file-for-io-bytesio-object
@@ -61,11 +61,14 @@ def ai():
         alpha_index  = result.argmax()
         alpha = alphabets[alpha_index + 1]
         
-        return alpha
+        return alpha.upper()
 
     else:
         return render_template("index.html")
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)
+
+# if __name__ == "__main__":
+#     app.run(host="192.168.100.108",port=90)  flask run --host=192.168.100.108 --port=5004

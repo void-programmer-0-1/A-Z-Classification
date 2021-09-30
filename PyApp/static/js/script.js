@@ -22,7 +22,8 @@ let isDrawing = false;
 
 function getPos(event){
     coord.x = event.clientX - canvas.offsetLeft;
-    coord.y = event.clientY - canvas.offsetTop;
+    coord.y = (event.clientY + 310) - canvas.offsetTop;
+    //coord.y = (event.clientY) - canvas.offsetTop;
 }
 
 function startPainting(event){
@@ -59,9 +60,9 @@ let isDrawingP = false;
 function getPosPhone(event){
     let touch = event.touches[0];
     coordP.x = touch.clientX - canvas.offsetLeft;
-    coordP.y = touch.clientY - canvas.offsetTop;
+    coordP.y = (touch.clientY + 660) - canvas.offsetTop;
+    //coordP.y = (touch.clientY) - canvas.offsetTop;
 }
-
 
 function startPaintingPhone(event){
     isDrawingP= true;
@@ -89,17 +90,46 @@ function sketchPhone(event){
     ctx.stroke();
 }
 
-function sendPic()
-{
+document.getElementById("clear-btn").addEventListener("click",() => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    document.getElementById("result").innerText = "Please Draw";
+});
+
+
+// AI STUFFS
+
+let query = "";
+const query_input = document.getElementById("ex3");
+
+document.getElementById("drawing-btn").addEventListener("click",() => {
     let dataURL = canvas.toDataURL();
     $.ajax({
         type: "POST",
-        url : "/draw",
+        url : "/",
         data : {
             image: dataURL
         }
     }).done((res) => {
         $("#result").html("The prediction is " + res);
+        query += res;
+        query_input.value = query;    
+        console.log("the query string :: ",query);
     })
-}
+})
 
+document.getElementById("clr-txt-btn").addEventListener("click",() => {
+    query = query.slice(0,-1);
+    console.log(query);
+    query_input.value = query;
+});
+
+// FOR IMAGE
+ 
+document.getElementById("img-btn").addEventListener("click" , (event) => {
+    event.preventDefault();
+    
+    const image_src = 'https://source.unsplash.com/weekly?' + query + '/';
+    const image  = document.getElementById("image-generator");
+    image.src = image_src;
+    
+});
