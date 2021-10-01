@@ -72,3 +72,8 @@ def ai():
 
 # if __name__ == "__main__":
 #     app.run(host="192.168.100.108",port=90)  flask run --host=192.168.100.108 --port=5004
+
+
+if __name__ == "__main__":
+    app.run(host="192.168.43.70",port=90)  #flask run --host=192.168.43.70 --port=5004
+

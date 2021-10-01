@@ -22,8 +22,8 @@ let isDrawing = false;
 
 function getPos(event){
     coord.x = event.clientX - canvas.offsetLeft;
-    coord.y = (event.clientY + 310) - canvas.offsetTop;
-    //coord.y = (event.clientY) - canvas.offsetTop;
+    //coord.y = (event.clientY + 410) - canvas.offsetTop;
+    coord.y = event.clientY - canvas.offsetTop;
 }
 
 function startPainting(event){
@@ -60,8 +60,8 @@ let isDrawingP = false;
 function getPosPhone(event){
     let touch = event.touches[0];
     coordP.x = touch.clientX - canvas.offsetLeft;
-    coordP.y = (touch.clientY + 660) - canvas.offsetTop;
-    //coordP.y = (touch.clientY) - canvas.offsetTop;
+    //coordP.y = (touch.clientY + 660) - canvas.offsetTop;
+    coordP.y = touch.clientY - canvas.offsetTop;
 }
 
 function startPaintingPhone(event){
