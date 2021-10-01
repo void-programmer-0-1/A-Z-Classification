@@ -113,7 +113,7 @@ document.getElementById("drawing-btn").addEventListener("click",() => {
         $("#result").html("The prediction is " + res);
         query += res;
         query_input.value = query;    
-        console.log("the query string :: ",query);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
     })
 })
 
@@ -127,9 +127,58 @@ document.getElementById("clr-txt-btn").addEventListener("click",() => {
  
 document.getElementById("img-btn").addEventListener("click" , (event) => {
     event.preventDefault();
-    
-    const image_src = 'https://source.unsplash.com/weekly?' + query + '/';
-    const image  = document.getElementById("image-generator");
-    image.src = image_src;
+
+    posibilities = combinations(query);
+    console.log("posibilities :: ",posibilities);
+
+    for(let i=0;i<posibilities.length;i++){
+        // create the div with class carousel-item
+
+        let div = document.createElement("div");
+        div.classList.add("carousel-item");
+
+        // create the img with class d-block w-100
+        
+        const image_src = 'https://source.unsplash.com/weekly?' + posibilities[i] + '/';
+        let img = document.createElement("img");
+        img.classList.add("d-block");
+        img.classList.add("w-100");
+        img.width = 600;
+        img.height = 600;
+        img.src = image_src;
+        
+        // adding the image into the div
+
+        div.appendChild(img);
+
+        document.getElementById("container").appendChild(div);
+    }
+
+    // const image_src = 'https://source.unsplash.com/weekly?' + query + '/';
+    // const image  = document.getElementById("image-generator");
+    // image.src = image_src;
     
 });
+
+let combinations = (text) => {
+
+    let characters = [',','.','/',';',':','"',"'"];
+    let posibilities = []
+
+    posibilities.push(text);
+
+    let string = "";
+
+    for(let i=0;i<characters.length;i++){
+        string += characters[i];
+        string += text;
+        for(let j=i;j<characters.length;j++){
+            string += characters[j];
+            posibilities.push(string);
+        }
+        string = "";
+    }
+
+    return posibilities;
+
+};

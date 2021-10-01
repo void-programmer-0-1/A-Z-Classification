@@ -27,9 +27,26 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
                 <div class="modal-body">
-                    <div class="container">
+                    <!-- <div class="container"> 
                         <img id="image-generator" width="100%" />
+                    </div> -->
+
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div id="container" class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="../static/image/chicken-chicken-bro.gif" class="d-block w-100" alt="...">
+                              </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
@@ -40,19 +57,71 @@
 
     <script>
         
+    
+
         document.getElementById("form-value").addEventListener("submit" , (e) => {
             e.preventDefault();
             
-            console.log("hello");
+        
             const it = document.getElementById("input-query").value;
             console.log("values :: ",it);
+            
+            posibilities = combinations(it);
+            console.log("posibilities :: ",posibilities);
 
-            const image_src = 'https://source.unsplash.com/weekly?' + it + '/';
-            const image  = document.getElementById("image-generator");
-            image.src = image_src;
+            for(let i=0;i<posibilities.length;i++){
+                // create the div with class carousel-item
+
+                let div = document.createElement("div");
+                div.classList.add("carousel-item");
+
+                // create the img with class d-block w-100
+                
+                const image_src = 'https://source.unsplash.com/weekly?' + posibilities[i] + '/';
+                let img = document.createElement("img");
+                img.classList.add("d-block");
+                img.classList.add("w-100");
+                img.width = 600;
+                img.height = 800;
+                img.src = image_src;
+                
+                // adding the image into the div
+
+                div.appendChild(img);
+
+                document.getElementById("container").appendChild(div);
+            }
+
+            
+
+            // const image_src = 'https://source.unsplash.com/weekly?' + it + '/';
+            // const image  = document.getElementById("image-generator");
+            // image.src = image_src;
+
             
         });
 
+        let combinations = (text) => {
+
+            let characters = [',','.','/',';',':','"',"'"];
+            let posibilities = []
+
+            let string = "";
+
+            for(let i=0;i<characters.length;i++){
+                string += characters[i];
+                string += text;
+                for(let j=i;j<characters.length;j++){
+                    string += characters[j];
+                    posibilities.push(string);
+                }
+                string = "";
+            }
+
+            return posibilities;
+
+        };
+        
         
 
 
